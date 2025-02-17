@@ -1,0 +1,359 @@
+body {
+    margin: 20px;
+    background-image: url("assets/images/BG/cornered-stairs2.png");
+    height: 100%;
+    background-attachment: fixed;
+    background-position: top;
+    background-position-y: 12%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+h1 {
+    margin-top: auto;
+    margin-bottom: auto;
+    font-size: 70px;
+    font-family: 'sodaShake';
+    cursor: default;
+}
+
+.navbar {
+    background: rgba(255, 255, 255, 0.114);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    border-radius: 15px;
+    margin-bottom: 15px;
+}
+
+.nav-item {
+    margin-top: 5px;
+}
+
+.navbar-brand {
+    display: inline;
+}
+
+button {
+    margin: 5px;
+}
+
+input[type="search"],
+input[type="submit"] {
+    margin: 5px;
+}
+
+/* ===== Currencies ===== */
+
+.currenciesDiv {
+    gap: 7px;
+    display: flex;
+    width: 100%;
+    margin: auto;
+    flex-wrap: wrap;
+}
+
+.currencyBox {
+    border: 1px solid rgb(220, 220, 220);
+    background-color: white;
+    flex: 0 1 calc(33.333% - 7px);
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.currencyBox:hover {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.2), 0 10px 25px 0 rgba(0, 0, 0, 0.19);
+    transform: scale(1.02);
+    transition: 0.2s linear;
+}
+
+.currencyBox:not(:hover) {
+    transition: 0.2s linear;
+}
+
+.cardTitle {
+    text-transform: uppercase;
+    margin-left: 5px;
+}
+
+.cardText {
+    margin-left: 5px;
+}
+
+.cardId {
+    display: none;
+}
+
+.currencyImg {
+    margin-left: auto;
+    width: auto;
+    height: 130px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.form-switch {
+    display: inline;
+    float: right;
+}
+
+.form-check-input {
+    cursor: pointer;
+    width: 2rem;
+    height: 1.25rem;
+}
+
+.moreInfoBtn {
+    width: 25%;
+    background-color: white;
+    border: 1px solid gray;
+    border-radius: 15px;
+}
+
+.moreInfoBtn:hover {
+    border: 1px solid rgb(82, 82, 82);
+    background-color: rgb(51, 48, 52);
+    color: white;
+    transition: 0.3s ease;
+}
+
+.moreInfoBtn:not(:hover) {
+    transition: 0.3s ease;
+}
+
+/* ===== collapse ===== */
+
+.infoTitle {
+    border-bottom: 1px solid rgb(195, 195, 195);
+}
+
+.collapse.show .infoCollapse {
+    transition: 1s;
+}
+
+.currencyPrice {
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.ImgInCollapse {
+    display: flex;
+    flex-flow: column;
+    flex-basis: 30%;
+    flex-grow: 1;
+}
+
+.infoCollapse {
+    margin-top: 5px;
+    display: flex;
+    border-top: 1px solid rgb(195, 195, 195);
+    padding: 15px;
+}
+
+/* ===== about ===== */
+
+#aboutDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    margin: auto;
+}
+
+.myDetails {
+    text-align: center;
+}
+
+.myDetails ul {
+    list-style: none;
+    padding: 0;
+}
+
+.myDetails li {
+    margin: 8px 0;
+    font-size: 16px;
+    color: #444;
+}
+
+.ShalevImg {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid #7a7a7a;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.myProfiles {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.myProfiles a {
+    margin: 0 12px;
+}
+
+.myProfiles img {
+    width: 35px;
+    height: 35px;
+    transition: transform 0.4s;
+}
+
+.myProfiles img:hover {
+    transform: scale(1.3);
+}
+
+.aboutDiv p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.errorDiv {
+    margin: auto;
+}
+
+.error-container {
+    margin: auto;
+    text-align: center;
+    background-color: transparent;
+    backdrop-filter: blur(15px);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+}
+
+.error-container img {
+    width: 95%;
+    height: auto;
+}
+
+.error-message {
+    margin-top: 20px;
+    font-size: 1.5em;
+    color: #e74c3c;
+    font-weight: bolder;
+}
+
+/* ===== modal ===== */
+
+.modal-dialog {
+    margin-top: 12%;
+}
+
+.modal-content {
+    width: 100%;
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ===== loaders ===== */
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    margin: auto auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.infoLoader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@font-face {
+    font-family: 'sodaShake';
+    src: url(assets/fonts/SodaShake.ttf);
+}
+
+/* ===== media query ===== */
+
+@media screen and (max-width: 600px) {
+    .navbar-nav {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        justify-content: left;
+    }
+
+    body {
+        background-attachment: scroll;
+        background-size: cover;
+    }
+
+    h1 {
+        font-size: 3em;
+    }
+
+    .currencyBox {
+        flex: 100%;
+    }
+
+    .currencyImg {
+        width: 80%;
+        height: auto;
+    }
+
+    .moreInfoBtn {
+        width: 40%;
+        color: black;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1000px) {
+    .navbar-nav {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        justify-content: left;
+    }
+
+    h1 {
+        font-size: 3em;
+    }
+
+    .currencyBox {
+        flex: 45%;
+    }
+
+    .currencyImg {
+        width: 80%;
+        height: auto;
+    }
+
+    .moreInfoBtn {
+        width: 40%;
+        color: black;
+    }
+}
