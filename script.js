@@ -134,7 +134,7 @@ $(async () => {
                     </div>
                     <ul>
                         <li>Name: Shalev Shaul</li>
-                        <li>Phone: 058-6568674</li>
+                        <li>Phone: 050-1234567</li>
                         <li>Email: ShalevShaul1@gmail.com</li>
                     </ul>
                 </div>
