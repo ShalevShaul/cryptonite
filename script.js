@@ -165,6 +165,7 @@ $(async () => {
             hideLoader();
             startLiveUpdates(symbols);
         } catch (error) {
+            hideLoader();
             console.log("Error Live Charts");       // Display an ERROR message on the page and in the console.
             $("#currenciesDiv").html(`
                 <div class="error-container">
