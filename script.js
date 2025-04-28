@@ -152,38 +152,6 @@ $(async () => {
     let dataPoints = {};
     let updateInterval;
     
-    // async function displayLiveCharts() {        // displays live charts data for favorite currencies.
-    //     if (updateInterval) {
-    //         clearInterval(updateInterval);
-    //     }
-    //     showLoader();
-    //     try {
-    //         // בדיקה אם קיים localStorage["favorites"] ואם הוא לא ריק
-    //         if (!localStorage["favorites"] || localStorage["favorites"] === "[]") {
-    //             hideLoader();
-    //             // אם אין מטבעות במועדפים, נציג גרף ריק עם הודעה מתאימה
-    //             initializeChart({}, "");
-    //             return;
-    //         }
-            
-    //         let favorites = JSON.parse(localStorage["favorites"]);
-    //         hideLoader();
-    //         let symbols = favorites.map(f => f.symbol).join(",");       // Put the favoirts symbols with a comma between them.
-    //         const liveCharts = await getDataAsync(LIVE_REPORTS_URL + symbols + `&tsyms=USD`);
-    //         initializeChart(liveCharts, symbols);
-    //         startLiveUpdates(symbols);
-    //     } catch (error) {
-    //         hideLoader();       // חשוב להסתיר את ה-loader במקרה של שגיאה
-    //         console.log("Error Live Charts");       // Display an ERROR message on the page and in the console.
-    //         $("#LiveReportsSection").html(`
-    //             <div class="error-container">
-    //                 <img src="assets/images/Error.png" alt="Error Image">
-    //                 <div class="error-message">Can NOT get live info</div>
-    //             </div>
-    //         `);
-    //     }
-    // }
-
     async function displayLiveCharts() {
         if (updateInterval) {
             clearInterval(updateInterval);
