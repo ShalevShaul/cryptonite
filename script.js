@@ -152,35 +152,103 @@ $(async () => {
     let dataPoints = {};
     let updateInterval;
     
-    async function displayLiveCharts() {        // displays live charts data for favorite currencies.
+    // async function displayLiveCharts() {        // displays live charts data for favorite currencies.
+    //     if (updateInterval) {
+    //         clearInterval(updateInterval);
+    //     }
+    //     showLoader();
+    //     try {
+    //         // בדיקה אם קיים localStorage["favorites"] ואם הוא לא ריק
+    //         if (!localStorage["favorites"] || localStorage["favorites"] === "[]") {
+    //             hideLoader();
+    //             // אם אין מטבעות במועדפים, נציג גרף ריק עם הודעה מתאימה
+    //             initializeChart({}, "");
+    //             return;
+    //         }
+            
+    //         let favorites = JSON.parse(localStorage["favorites"]);
+    //         hideLoader();
+    //         let symbols = favorites.map(f => f.symbol).join(",");       // Put the favoirts symbols with a comma between them.
+    //         const liveCharts = await getDataAsync(LIVE_REPORTS_URL + symbols + `&tsyms=USD`);
+    //         initializeChart(liveCharts, symbols);
+    //         startLiveUpdates(symbols);
+    //     } catch (error) {
+    //         hideLoader();       // חשוב להסתיר את ה-loader במקרה של שגיאה
+    //         console.log("Error Live Charts");       // Display an ERROR message on the page and in the console.
+    //         $("#LiveReportsSection").html(`
+    //             <div class="error-container">
+    //                 <img src="assets/images/Error.png" alt="Error Image">
+    //                 <div class="error-message">Can NOT get live info</div>
+    //             </div>
+    //         `);
+    //     }
+    // }
+
+    async function displayLiveCharts() {
         if (updateInterval) {
             clearInterval(updateInterval);
         }
         showLoader();
+        
         try {
-            // בדיקה אם קיים localStorage["favorites"] ואם הוא לא ריק
-            if (!localStorage["favorites"] || localStorage["favorites"] === "[]") {
+            // בדיקה מסודרת יותר של localStorage
+            let favorites = [];
+            try {
+                const storedFavorites = localStorage.getItem('favorites');
+                if (storedFavorites && storedFavorites !== "[]") {
+                    favorites = JSON.parse(storedFavorites);
+                }
+            } catch (e) {
+                console.log("Error parsing favorites:", e);
+            }
+            
+            if (favorites.length === 0) {
                 hideLoader();
-                // אם אין מטבעות במועדפים, נציג גרף ריק עם הודעה מתאימה
-                initializeChart({}, "");
+                // הצג גרף ריק עם הודעה
+                $("#chartContainer").html(`
+                    <div class="text-center mt-5">
+                        <h3>No Currencies Selected</h3>
+                        <p>Please add currencies to your favorites to see live charts</p>
+                    </div>
+                `);
                 return;
             }
             
-            let favorites = JSON.parse(localStorage["favorites"]);
-            hideLoader();
-            let symbols = favorites.map(f => f.symbol).join(",");       // Put the favoirts symbols with a comma between them.
+            let symbols = favorites.map(f => f.symbol).join(",");
+            console.log("Fetching live data for symbols:", symbols); // הוספת לוג לצורכי דיבוג
+            
             const liveCharts = await getDataAsync(LIVE_REPORTS_URL + symbols + `&tsyms=USD`);
+            console.log("Live data received:", liveCharts); // הוספת לוג לצורכי דיבוג
+            
+            hideLoader();
             initializeChart(liveCharts, symbols);
             startLiveUpdates(symbols);
         } catch (error) {
-            hideLoader();       // חשוב להסתיר את ה-loader במקרה של שגיאה
-            console.log("Error Live Charts");       // Display an ERROR message on the page and in the console.
-            $("#LiveReportsSection").html(`
-                <div class="error-container">
-                    <img src="assets/images/Error.png" alt="Error Image">
-                    <div class="error-message">Can NOT get live info</div>
+            hideLoader();
+            console.error("Error Live Charts:", error); // הוספת לוג מפורט יותר של השגיאה
+            
+            // הצג הודעת שגיאה ברורה יותר
+            $("#chartContainer").html(`
+                <div class="error-container text-center mt-5">
+                    <img src="assets/images/Error.png" alt="Error Image" style="max-width: 100px;">
+                    <div class="error-message mt-3">
+                        <h4>Cannot Load Live Charts</h4>
+                        <p>There was an error connecting to the cryptocurrency API.</p>
+                        <p>This might be due to API rate limits or connection issues.</p>
+                    </div>
                 </div>
             `);
+            
+            // בעיות בגיטהאב פייג'ס קשורות לעתים קרובות ל-CORS או לפרוטוקול HTTP vs HTTPS
+            if (window.location.protocol === 'https:' && LIVE_REPORTS_URL.startsWith('http:')) {
+                console.error("Mixed content error: Trying to load HTTP content from HTTPS page");
+                $("#chartContainer").append(`
+                    <div class="alert alert-warning mt-3">
+                        <strong>Mixed Content Issue Detected</strong>
+                        <p>The cryptocurrency API is using HTTP while the site is using HTTPS.</p>
+                    </div>
+                `);
+            }
         }
     }
 
